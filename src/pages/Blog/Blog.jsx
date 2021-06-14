@@ -51,16 +51,19 @@ const Blog = () => {
                    if (err) {
                      alert('ошибка загрузки');
                      setInputText('')
+                     e.target.reset()
                    } else {
                      alert('фото загружено');
                      setInputText('')
+                     e.target.reset()
                    }
                  },
                );
            });
          },
        );
-      
+       
+      console.log(e)
    }
 
    return (
