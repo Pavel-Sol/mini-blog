@@ -2,13 +2,14 @@ import { useState, useEffect} from 'react'
 
 import {database, storage} from './../../firebaseConfig'
 import Form from './../../components/Form/Form'
-import CardList from './../../components/CardList/CardList'
+import Posts from '../../components/Posts/Posts'
 
 
 
 const Blog = () => {
    const [inputText, setInputText] = useState('')
    const [selectedFile, setSelectedFile] = useState('');
+   const [posts, setPosts] = useState([])
 
    const handleTextInput = (e) => {
       setInputText(e.target.value)
@@ -16,7 +17,6 @@ const Blog = () => {
 
    const handleFiletInput = (e) => {
       setSelectedFile(e.target.files[0])
-      // console.log(e.target.value)
    }
 
    const sendPost = (e) => {
@@ -56,14 +56,35 @@ const Blog = () => {
                      alert('фото загружено');
                      setInputText('')
                      e.target.reset()
+                     getPosts()
                    }
                  },
                );
            });
          },
        );
-       
-      console.log(e)
+   }
+
+
+   useEffect(() => {
+      getPosts()
+   }, [])
+
+   const getPosts = () => {
+     database
+    .ref('blogs/')
+    .once('value')
+    .then((snapshot) => {
+      var data = snapshot.val();
+      // console.log(data)
+      const dataArr = []
+      for (let key in data) {
+         let item = data[key]
+         dataArr.push({ ...item, id: key })
+      }
+      // console.log(dataArr)
+      setPosts(dataArr.reverse())
+    })
    }
 
    return (
@@ -73,7 +94,8 @@ const Blog = () => {
         handleTextInput={handleTextInput}
         handleFiletInput={handleFiletInput}
         sendPost={sendPost}/>
-        <CardList />
+        <Posts
+        posts={posts} />
      </div>
    )
 }

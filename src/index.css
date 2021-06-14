@@ -16,3 +16,12 @@ code {
   background: rgba(188, 224, 176, 0.2);
   text-align: center;
 }
+
+.image-wrap {
+  width: 100px;
+  height: 100px;
+}
+
+.image-wrap img {
+  height: 100%;
+}
