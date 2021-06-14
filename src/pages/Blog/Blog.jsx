@@ -87,6 +87,13 @@ const Blog = () => {
     })
    }
 
+   const removePost = (id) => {
+      database
+         .ref('blogs/' + id)
+         .remove();
+      getPosts();
+   }
+
    return (
      <div>
         <Form 
@@ -95,6 +102,7 @@ const Blog = () => {
         handleFiletInput={handleFiletInput}
         sendPost={sendPost}/>
         <Posts
+        removePost={removePost}
         posts={posts} />
      </div>
    )
