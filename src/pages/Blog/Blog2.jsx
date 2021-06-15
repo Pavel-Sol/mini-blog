@@ -7,7 +7,7 @@ import MainLoader from './../../components/Loaders/MainLoader'
 
 
 
-const Blog = () => {
+const Blog2 = () => {
    const [inputText, setInputText] = useState('')
    const [selectedFile, setSelectedFile] = useState('');
    const [posts, setPosts] = useState([])
@@ -104,7 +104,6 @@ const Blog = () => {
    return (
      <div>
         <Form 
-        isBtnUploadDisabled={isBtnUploadDisabled}
         inputText={inputText}
         handleTextInput={handleTextInput}
         handleFiletInput={handleFiletInput}
@@ -119,4 +118,4 @@ const Blog = () => {
    )
 }
 
-export default Blog
+export default Blog2

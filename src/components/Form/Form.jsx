@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react'
-import {database, storage} from './../../firebaseConfig'
 
-const Form = ({inputText, handleTextInput, handleFiletInput, sendPost}) => {
+const Form = ({inputText, handleTextInput, handleFiletInput,
+    sendPost, isBtnUploadDisabled}) => {
 
 
    return(
@@ -11,14 +10,21 @@ const Form = ({inputText, handleTextInput, handleFiletInput, sendPost}) => {
          action="">
 
             <textarea onChange={handleTextInput} value={inputText} 
-             className='form-control'  placeholder="What's on your mind..."></textarea>
+             className='form-control mb-3'  placeholder="What's on your mind..."></textarea>
 
             <input
             className='form-control'
             onChange={handleFiletInput} 
             type="file" accept="images/*"/>
 
-            <button type='submit' className='btn btn-success'>Upload</button>
+            {
+               isBtnUploadDisabled
+               ? <button className="btn btn-success mt-3" type="submit" disabled>
+                     <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                     <span className='m-1'>ЗАГРУЖАЕТСЯ...</span>
+                  </button>
+               : <button type='submit' className='btn btn-success mt-3'>ДОБАВИТЬ ПОСТ</button>
+            }
          </form>
       </div>
    )
