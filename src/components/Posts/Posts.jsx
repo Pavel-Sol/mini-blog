@@ -1,9 +1,9 @@
 const Posts = ({posts, removePost}) => {
 
-   console.log(posts)
+   // console.log(posts)
    return(
       <div>
-         <h2>Posts</h2>
+         {/* <h2>Posts</h2> */}
          {  
            posts.length > 0
            ? posts.map(item => {

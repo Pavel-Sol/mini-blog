@@ -14,6 +14,7 @@ const Form = ({inputText, handleTextInput, handleFiletInput, sendPost}) => {
              className='form-control'  placeholder="What's on your mind..."></textarea>
 
             <input
+            className='form-control'
             onChange={handleFiletInput} 
             type="file" accept="images/*"/>
 

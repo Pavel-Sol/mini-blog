@@ -3,6 +3,7 @@ import { useState, useEffect} from 'react'
 import {database, storage} from './../../firebaseConfig'
 import Form from './../../components/Form/Form'
 import Posts from '../../components/Posts/Posts'
+import MainLoader from './../../components/Loaders/MainLoader'
 
 
 
@@ -10,6 +11,7 @@ const Blog = () => {
    const [inputText, setInputText] = useState('')
    const [selectedFile, setSelectedFile] = useState('');
    const [posts, setPosts] = useState([])
+   const [isMainLoader, setIsMainLoader] = useState(true)
 
    const handleTextInput = (e) => {
       setInputText(e.target.value)
@@ -67,7 +69,7 @@ const Blog = () => {
 
 
    useEffect(() => {
-      getPosts()
+    getPosts()
    }, [])
 
    const getPosts = () => {
@@ -84,6 +86,7 @@ const Blog = () => {
       }
       // console.log(dataArr)
       setPosts(dataArr.reverse())
+      setIsMainLoader(false)
     })
    }
 
@@ -101,6 +104,9 @@ const Blog = () => {
         handleTextInput={handleTextInput}
         handleFiletInput={handleFiletInput}
         sendPost={sendPost}/>
+         {
+          isMainLoader && <MainLoader/>
+        }
         <Posts
         removePost={removePost}
         posts={posts} />
