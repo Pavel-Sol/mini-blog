@@ -1,19 +1,18 @@
+import Post from './../Post/Post'
+
 const Posts = ({posts, removePost}) => {
 
-   // console.log(posts)
    return(
-      <div>
-         {/* <h2>Posts</h2> */}
+      <div className='row mt-4'>
          {  
            posts.length > 0
            ? posts.map(item => {
-              return <div key={item.id}>
-                 <div>{item.text}</div>
-                 <div className='image-wrap'>
-                     <img src={item.imageURL} alt="" />
-                 </div>
-                 <button onClick={() => removePost(item.id)}>удалить</button>
-              </div>
+              return <Post
+               id ={item.id}
+               imageURL ={item.imageURL}
+               text ={item.text}
+               removePost={removePost}
+               key={item.id}/> 
            }) 
            : null
          }

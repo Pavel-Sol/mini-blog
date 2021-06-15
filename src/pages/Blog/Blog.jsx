@@ -23,7 +23,6 @@ const Blog = () => {
 
    const sendPost = (e) => {
       e.preventDefault()
-      // console.log(selectedFile)
 
       let storageRef = storage.ref(`images/${selectedFile.name}`);
       let uploadTask = storageRef.put(selectedFile);
@@ -77,14 +76,13 @@ const Blog = () => {
     .ref('blogs/')
     .once('value')
     .then((snapshot) => {
-      var data = snapshot.val();
-      // console.log(data)
+      const data = snapshot.val();
       const dataArr = []
       for (let key in data) {
          let item = data[key]
          dataArr.push({ ...item, id: key })
       }
-      // console.log(dataArr)
+      
       setPosts(dataArr.reverse())
       setIsMainLoader(false)
     })

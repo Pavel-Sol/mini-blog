@@ -17,11 +17,14 @@ code {
   text-align: center;
 }
 
-.image-wrap {
-  width: 100px;
-  height: 100px;
+.card-img {
+  width: 100%;
+  height: 15vw;
+  object-fit: cover;
 }
 
-.image-wrap img {
-  height: 100%;
+@media screen and (max-width: 575px) {
+  .card-img {
+    height: 35vw;
+  }
 }
