@@ -4,6 +4,7 @@ const Form = ({inputText, handleTextInput, handleFiletInput,
 
    return(
       <div className='form__wrapper'>
+
          <form 
          onSubmit={sendPost}
          action="">

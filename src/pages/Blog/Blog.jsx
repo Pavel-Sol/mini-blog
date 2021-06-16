@@ -35,7 +35,6 @@ const Blog = () => {
       // валидация формы
       let error = checkFormData(inputText, selectedFile)
       if(error) {
-        console.log(error)
         setFormError(error)
         return
       }
