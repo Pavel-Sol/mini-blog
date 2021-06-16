@@ -1,7 +1,6 @@
 
 const Form = ({inputText, handleTextInput, handleFiletInput,
-    sendPost, isBtnUploadDisabled}) => {
-
+    sendPost, isBtnUploadDisabled, formError}) => {
 
    return(
       <div className='form__wrapper'>
@@ -16,6 +15,9 @@ const Form = ({inputText, handleTextInput, handleFiletInput,
             className='form-control'
             onChange={handleFiletInput} 
             type="file" accept="images/*"/>
+            <div className='form-error'>
+               {formError}
+            </div>
 
             {
                isBtnUploadDisabled

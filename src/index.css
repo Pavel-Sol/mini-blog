@@ -23,6 +23,11 @@ code {
   object-fit: cover;
 }
 
+.form-error {
+  height: 15px;
+  margin: 10px 0px;
+  color: rgb(231, 55, 55);
+}
 @media screen and (max-width: 575px) {
   .card-img {
     height: 35vw;

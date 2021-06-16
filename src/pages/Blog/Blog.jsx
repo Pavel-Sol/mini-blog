@@ -1,6 +1,7 @@
 import { useState, useEffect} from 'react'
 
 import {database, storage} from './../../firebaseConfig'
+import  {checkFormData} from './../../utils/utils'
 import Form from './../../components/Form/Form'
 import Posts from '../../components/Posts/Posts'
 import MainLoader from './../../components/Loaders/MainLoader'
@@ -13,6 +14,7 @@ const Blog = () => {
    const [posts, setPosts] = useState([])
    const [isMainLoader, setIsMainLoader] = useState(true)
    const [isBtnUploadDisabled, SetIsBtnUploadDisabled]  = useState(false)
+   const [formError, setFormError] = useState('');
 
    useEffect(() => {
     getPosts()
@@ -26,10 +28,21 @@ const Blog = () => {
       setSelectedFile(e.target.files[0])
    }
 
+
    const sendPost = (e) => {
       e.preventDefault()
 
+      // валидация формы
+      let error = checkFormData(inputText, selectedFile)
+      if(error) {
+        console.log(error)
+        setFormError(error)
+        return
+      }
+
+      setFormError('')
       SetIsBtnUploadDisabled(true)
+
 
       let storageRef = storage.ref(`images/${selectedFile.name}`);
       let uploadTask = storageRef.put(selectedFile);
@@ -104,6 +117,7 @@ const Blog = () => {
    return (
      <div>
         <Form 
+        formError={formError}
         isBtnUploadDisabled={isBtnUploadDisabled}
         inputText={inputText}
         handleTextInput={handleTextInput}
